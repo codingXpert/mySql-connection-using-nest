@@ -8,3 +8,13 @@ content-type: application/json
     "gender":"male",
     "dob":"19/07/1999"
 }
+
+
+
+### Find all users with a given userName
+GET http://localhost:3000/user/findAll?userName=Rahul@test.com
+
+
+
+### Find a particular user with a given ID
+GET http://localhost:3000/user/3

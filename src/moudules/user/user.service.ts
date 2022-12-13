@@ -12,17 +12,21 @@ export class UserService {
     console.log(createUserDto);
     const user = this.repo.create(createUserDto);
    
-   
-    this.repo.save(user);
-  
+    return this.repo.save(user);
   }
-
+  
+  find(userName:string){
+    return this.repo.findBy({userName});
+  }
   findAll() {
     return `This action returns all user`;
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} user`;
+    if(!id){
+      return null;
+   }
+     return this.repo.findOneBy({id});
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

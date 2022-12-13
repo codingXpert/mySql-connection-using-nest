@@ -7,17 +7,17 @@ export class User {
  id: number; 
 
 @Column()  
-fistName:string
+firstName:string;
 
 @Column() 
-lastName:string
+lastName:string;
 
 @Column() 
-userName:string
+userName:string;
 
 @Column() 
-gender:string
+gender:string;
 
 @Column()  
-dob:string
+dob:string;
 }

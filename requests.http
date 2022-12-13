@@ -17,4 +17,13 @@ GET http://localhost:3000/user/findAll?userName=Rahul@test.com
 
 
 ### Find a particular user with a given ID
-GET http://localhost:3000/user/3
+GET http://localhost:3000/user/1
+
+
+### update a user
+PATCH http://localhost:3000/user/1
+Content-Type: application/json
+
+{
+    "userName":"abc@abc.com"
+}

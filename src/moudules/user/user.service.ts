@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -29,8 +29,13 @@ export class UserService {
      return this.repo.findOneBy({id});
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: number, updateUserDto:Partial<User>) {
+    const user = await this.findOne(id);
+    if(!user){
+      throw new NotFoundException('user not found'); 
+    }
+    Object.assign(user , updateUserDto);    // put in the user we just found and then an object describing all the updates we want to copy over to that object
+      return this.repo.save(user);
   }
 
   remove(id: number) {

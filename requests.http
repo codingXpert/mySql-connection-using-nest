@@ -1,0 +1,11 @@
+POST http://localhost:3000/create
+Content-Type: application/json
+
+{
+   " id":"1",
+   "firstName":"xyz",
+   "lastName":"abc",
+   "userName":"user1",
+   "gender":"m",
+   "dob":"jan"
+}

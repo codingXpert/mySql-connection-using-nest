@@ -12,7 +12,7 @@ content-type: application/json
 
 
 ### Find all users with a given userName
-GET http://localhost:3000/user/findAll?userName=Rahul@test.com
+GET http://localhost:3000/user/findAll?userName=Vivek@test.com
 
 
 

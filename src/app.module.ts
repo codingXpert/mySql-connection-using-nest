@@ -15,7 +15,7 @@ import { User } from './moudules/user/entities/user.entity';
       username:'root',
       password:'root',
       database:'user1',
-      entities:[User],
+      entities:['dist/**/*.entity.js'],
       synchronize:true
     })],
   controllers: [AppController],

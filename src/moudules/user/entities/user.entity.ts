@@ -12,7 +12,7 @@ export class User {
 
   @Column({ name: 'first_name' })
   firstName: string;
-
+// ./src/modules/entities/user
   @Column({ name: 'last_name' })
   lastName: string;
 

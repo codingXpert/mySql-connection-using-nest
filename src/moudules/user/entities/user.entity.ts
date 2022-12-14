@@ -2,8 +2,9 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  CreateDateColumn,
 } from 'typeorm';
+import { gender } from './enum/user.enum'; 
+
 
 @Entity()
 export class User {
@@ -19,10 +20,11 @@ export class User {
   @Column({ name: 'user_name' })
   userName: string;
 
+  
   @Column()
-  gender: string;
+  gender:gender;
+
 
   @Column({ type: "date" })
-  // @CreateDateColumn()
   dob: Date;
 }

@@ -2,11 +2,12 @@ POST http://localhost:3000/user/create
 content-type: application/json
 
 {
-    "firstName":"Naveen",
-    "lastName":"Singh",
-    "userName":"Singh@test.com",
+    "firstName":"Pratap",
+    "lastName":"Kumar",
+    "userName":"abc@test.com",
     "gender":"male",
     "dob":"1998-06-25"
+  
 }
 
 
@@ -25,7 +26,8 @@ PATCH http://localhost:3000/user/1
 Content-Type: application/json
 
 {
-    "userName":"abc@abc.com"
+    "firstName":"",
+    "lastName":""
 }
 
 

@@ -5,6 +5,7 @@ import { UserPreferences } from 'typescript';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
+import { gender } from './entities/enum/user.enum';
 
 @Injectable()
 export class UserService {
@@ -16,6 +17,10 @@ export class UserService {
       throw new BadRequestException("User name is in use")
     }
 
+    const gender = await this.find(createUserDto.gender);
+    if(gender !== gender ){
+      throw new BadRequestException('Please enter valid gender');
+    }
     const user = this.repo.create(createUserDto);
    
      return this.repo.save(user);
@@ -49,7 +54,7 @@ export class UserService {
     if(!user){
       throw new NotFoundException('User Not Found!!')
     }
-      const temp = id;
+      
       console.log(`Deleted With Id ${id}`);
       
       return this.repo.remove(user);

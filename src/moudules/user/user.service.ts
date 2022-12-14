@@ -1,6 +1,7 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadGatewayException, BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { UserPreferences } from 'typescript';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
@@ -8,28 +9,33 @@ import { User } from './entities/user.entity';
 @Injectable()
 export class UserService {
   constructor(@InjectRepository(User) private repo:Repository<User>){}
-  create(createUserDto: CreateUserDto) {
-    console.log(createUserDto);
+  async create(createUserDto: CreateUserDto):Promise<User> {
+    // checking for unique user name
+    const users = await this.find(createUserDto.userName);
+    if(users.length){
+      throw new BadRequestException("User name is in use")
+    }
+
     const user = this.repo.create(createUserDto);
    
-    return this.repo.save(user);
+     return this.repo.save(user);
   }
   
-  find(userName:string){
+   find(userName:string):Promise<User[]>{
     return this.repo.findBy({userName});
   }
-  findAll() {
-    return `This action returns all user`;
-  }
+  // findAll() {
+  //   return `This action returns all user`;
+  // }
 
-  findOne(id: number) {
+   findOne(id: number):Promise<User> {
     if(!id){
       return null;
    }
      return this.repo.findOneBy({id});
   }
 
-  async update(id: number, updateUserDto:Partial<User>) {
+  async update(id: number, updateUserDto:Partial<User>):Promise<User> {
     const user = await this.findOne(id);
     if(!user){
       throw new NotFoundException('user not found'); 
@@ -38,7 +44,14 @@ export class UserService {
       return this.repo.save(user);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
-  }
+  async remove(id: number) {
+    const user = await this.findOne(id);
+    if(!user){
+      throw new NotFoundException('User Not Found!!')
+    }
+      const temp = id;
+      console.log(`Deleted With Id ${id}`);
+      
+      return this.repo.remove(user);
+    }
 }

@@ -2,11 +2,11 @@ POST http://localhost:3000/user/create
 content-type: application/json
 
 {
-    "firstName":"Rahul",
-    "lastName":"Kumar",
-    "userName":"Rahul@test.com",
+    "firstName":"Naveen",
+    "lastName":"Singh",
+    "userName":"Singh@test.com",
     "gender":"male",
-    "dob":"19/07/1999"
+    "dob":"1998-06-25"
 }
 
 
@@ -27,3 +27,7 @@ Content-Type: application/json
 {
     "userName":"abc@abc.com"
 }
+
+
+### Deleting User By Id
+DELETE http://localhost:3000/user/1
